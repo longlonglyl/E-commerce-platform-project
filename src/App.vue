@@ -1,30 +1,48 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <!-- 头部组件 -->
+
+  <Head></Head>
+
+  <!-- 这里根据不同的Url地址，展示不同的路由 -->
+  <router-view></router-view>
+  <!-- {{thisPath}} -->
+
+  <!-- 底部组件 -->
+  <!-- Footer在Home、Search路由中显示，在Login、Register中隐藏 -->
+  <Footer v-if="isShowFooter"></Footer>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import Head from '@/components/Head/Head.vue'
+  import Footer from '@/components/Footer/Footer.vue'
+  import router from './router'
+  import {
+    computed, onMounted,
+  } from '@vue/runtime-core'
+import store from './store'
 
-nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  export default {
+    components: {
+      Head,
+      Footer
+    },
+    setup() {
+      let isShowFooter = computed(() => { //是否展示Footer的变量
+        return router.currentRoute.value.meta.showFooter
+      })
+      onMounted(() => {
+        store.dispatch('asyncGetList')  //发起vuex里封装的axios拿到数组，存放在vuex里
+      })
 
-    &.router-link-exact-active {
-      color: #42b983;
+      return {
+        isShowFooter,
+      }
     }
   }
-}
+
+</script>
+
+<style>
+
 </style>

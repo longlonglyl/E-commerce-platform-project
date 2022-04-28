@@ -1,25 +1,69 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import {
+  createRouter,
+  createWebHashHistory
+} from 'vue-router'
+import Home from '@/views/Home/Home.vue'
+import Login from '@/views/Login/Login.vue'
+import Register from '@/views/Register/Register.vue'
+import Search from '@/views/Search/Search.vue'
+import Detail from '@/views/Detail/Detail.vue'
+import nprogress from 'nprogress'  //进度条
+import 'nprogress/nprogress.css'  //进度条样式
 
-const routes = [
-  {
+const routes = [{
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/home'
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/home',
+    component: Home,
+    meta: {
+      showFooter: true
+    }
+  },
+  {
+    path: '/login',
+    component: Login,
+    meta: {
+      showFooter: false
+    }
+  },
+  {
+    path: '/register',
+    component: Register,
+    meta: {
+      showFooter: false
+    }
+  },
+  {
+    path: '/search/:keyword?:page?', //必须传递名为keyword和page的params参数,后面加'?'是表示可传可不传
+    component: Search,
+    name:'search',  //配置一个name，可以路由传参
+    meta: {
+      showFooter: true
+    }
+  },
+  {
+    path: '/detail/:goodsName?',//属性名后面配置的是params参数(一直以为是query)
+    name: 'detail',
+    component: Detail,
+    meta: {
+      showFooter: true
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+router.beforeEach((to,from,next) => {
+  nprogress.start();  //路由跳转前加载进度条
+  next()
+})
+router.afterEach((to,from) => {
+  nprogress.done();  //路由跳转完成就结束进度条
+  window.scroll(0,0) //每次路由跳转以后都定位到最顶端
 })
 
 export default router

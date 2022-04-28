@@ -1,0 +1,96 @@
+{
+  "code": 200,
+  "message": "成功",
+  "data": {
+    "goodsList": [{
+        "id": 200,
+        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202204241528_2cdbca34d0fe450fe6bf3b0e3671e5d5.png",
+        "title": "米家冰箱 对开门 502L冰晶版 珠光白",
+        "price": 3299,
+        "tmName": "米家",
+        "attrs": "冰箱"
+      }, {
+        "id": 201,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1606296263.35176186.jpg",
+        "title": "米家互联网对开门冰箱 540L 深灰",
+        "price": 2899,
+        "tmName": "米家",
+        "attrs": "冰箱"
+      }, {
+        "id": 202,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1570673211.53072406.jpg",
+        "title": "米家互联网十字四门冰箱 486L",
+        "price": 2899,
+        "tmName": "米家",
+        "attrs": "冰箱"
+      }, {
+        "id": 15,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1565262481.3597559.jpg",
+        "title": "米家变频滚筒洗衣机1A 8kg 白色",
+        "price": 1399,
+        "tmName": "米家",
+        "attrs": "洗衣机"
+      }, {
+        "id": 17,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1637737111.73936900.jpg",
+        "title": "米家洗烘套装 10kg+10kg",
+        "price": 4898,
+        "tmName": "米家",
+        "attrs": "洗衣机"
+      }, {
+        "id": 2132,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1616985064.49235006.jpg",
+        "title": "米家无线吸尘器K10 Pro 白色",
+        "price": 5988,
+        "tmName": "米家",
+        "attrs": "吸尘器"
+      }, {
+        "id": 6138,
+        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cea1ff3517387569b7f59fc2b7d01d30.png",
+        "title": "Xiaomi 11 Ultra 8GB+256GB",
+        "price": 3999,
+        "tmName": "小米",
+        "attrs": "手机"
+      }, {
+        "id": 1270,
+        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b36954e448a48cc3c61fb2d020d20f63.png",
+        "title": "Xiaomi 11 青春版 8GB+256GB",
+        "price": 2199,
+        "tmName": "小米",
+        "attrs": "手机"
+      }, {
+        "id": 6186,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1606289221.80685857.jpg",
+        "title": "Redmi Note 9 4G 4GB+128GB",
+        "price": 899,
+        "tmName": "红米",
+        "attrs": "手机"
+      }, {
+        "id": 5558,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1606288801.46329073.jpg",
+        "title": "Redmi Note 9 Pro 5G 8GB+128GB",
+        "price": 1499,
+        "tmName": "红米",
+        "attrs": "手机"
+      }, {
+        "id": 5559,
+        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/01d9571051a91e540e5c644fa60cc858.jpg",
+        "title": "RedmiBook Pro 14 锐龙版",
+        "price": 4199,
+        "tmName": "红米",
+        "attrs": "笔记本"
+      },
+      {
+        "id": 5560,
+        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3e05c7567ed8df19728311e64fcd701c.jpg",
+        "title": "小米笔记本 Pro 14 增强版",
+        "price": 4799,
+        "tmName": "小米",
+        "attrs": "笔记本"
+      }
+    ]
+  },
+  "pageNo": 2,
+  "pageMax":3,
+  "ok": true
+}
