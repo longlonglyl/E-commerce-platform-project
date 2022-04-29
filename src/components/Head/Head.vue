@@ -51,15 +51,15 @@ export default {
         const goSearch = () => {  //点击搜索按钮跳转路由
             // this.$router.push('/search') //vue3不能用这种方法编程式跳转路由
             if (keywords.value !== '') {
-                router.push({
+                router.replace({
                     name:'search',
                     query:{
                         keyword: keywords.value,
                         page: 1 //在搜索框里，自动请求第一页的数据
-                        },  //向name为'search'的路由传递params参数
+                        },  //向name为'search'的路由传递query参数
                 })
             }
-            keywords.value = ''  //设置的是value为空，但还是ref响应式
+            keywords.value = ''  //还是ref响应式
         }
         return{
             goSearch,

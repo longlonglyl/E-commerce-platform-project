@@ -6,7 +6,7 @@
     <div class="sui-pagination clearfix">
       <ul>
         <li class="prev disabled">
-          <a @click="prvPage">«上一页</a>
+          <a @click="prvPage" v-if="arr.length">«上一页</a>
         </li>
         <!-- 根据数据中最大页数动态生成分页按钮 -->
         <!-- 动态绑定类名，当 -->
@@ -15,7 +15,7 @@
         </li>
         <li class="dotted"></li>
         <li class="next">
-          <a @click="nextPage">下一页»</a>
+          <a @click="nextPage" v-if="arr.length">下一页»</a>
         </li>
       </ul>
     </div>
@@ -27,25 +27,32 @@
     reactive,
     ref,
     toRaw
-  } from '@vue/reactivity';
+  } from 'vue';
   import {
+    nextTick,
     onUpdated,
     watch
   } from '@vue/runtime-core';
   import router from '@/router';
+import { onBeforeRouteUpdate } from 'vue-router';
   export default {
     props: ['pageMax'],
     setup(props) {
       let currentPage = reactive({})
-      let arr = []
+      let arr = reactive([])
       let isActive = ref('1')
 
-      
-      watch(props.pageMax, () => { //props.pageMax是通过异步操作更新的，所以一开始是空数据
-        for (let i = 1; i <= toRaw(props.pageMax.data); i++) { //动态生成一个升序数组，为了渲染分页列表
+
+      watch(props.pageMax,() => { //props.pageMax是通过异步操作更新的，所以一开始是空数据
+      // console.log('检测到props.pageMax变化了');
+        for (var i = 1; i <= toRaw(props.pageMax.data); i++) { //动态生成一个升序数组，为了渲染分页列表
           arr.push(i)
         }
+        // console.log(arr);  //真的奇怪，明明arr是响应式数据，arr数据都更新了，分页v-for不重新渲染
         currentPage.data = Number(router.currentRoute.value.query.page); //拿到现在的页数(默认是字符串)
+      })
+      onUpdated(() => {
+        arr = reactive([])
       })
 
 

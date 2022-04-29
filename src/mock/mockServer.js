@@ -48,7 +48,7 @@ Mock.mock('/mock/search', 'post' || "POST", function (options) {
           }
         })
         searchdata.data.goodsList = arr //让筛选后的数组代替数据中原来的数组
-        console.log(searchdata);
+        // console.log(searchdata);
         return {
           code: 200,
           data: searchdata
@@ -111,3 +111,4 @@ Mock.mock('/mock/search', 'post' || "POST", function (options) {
     }
   }
 })
+

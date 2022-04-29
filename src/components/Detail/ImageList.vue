@@ -2,7 +2,10 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img src="@/assets/Detail/s1.png">
+        <img :src="goodsDetail.small_img">
+      </div>
+      <div class="swiper-slide">
+        <img :src="goodsDetail.small_img2">
       </div>
     </div>
     <div class="swiper-button-next"></div>
@@ -11,11 +14,17 @@
 </template>
 
 <script>
-
   import Swiper from 'swiper'
   export default {
     name: "ImageList",
+    props: ['goodsDetail'],
+    setup(props) {
+      return {
+
+      }
+    }
   }
+
 </script>
 
 <style lang="less" scoped>
@@ -30,13 +39,11 @@
       height: 56px;
 
       img {
-        width: 100%;
-        height: 100%;
+        float: left;
         border: 1px solid #ccc;
         padding: 2px;
         width: 50px;
         height: 50px;
-        display: block;
 
         &.active {
           border: 2px solid #f60;
@@ -69,9 +76,11 @@
       border: 1px solid rgb(204, 204, 204);
       top: 0;
       margin-top: 0;
+
       &::after {
         font-size: 12px;
       }
     }
   }
+
 </style>

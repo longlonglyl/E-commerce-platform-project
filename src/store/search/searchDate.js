@@ -40,6 +40,9 @@ const getters = {
   goodsList(){
     return state.searchList.data.data.goodsList
   },
+  pageMax(){
+    return state.pageMax.data
+  },
   trademarkList(){
     return state.searchList.data.data.trademarkList
   },

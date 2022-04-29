@@ -55,10 +55,11 @@
                     img: value.defaultImg,
                     price: value.price,
                     attrs: value.attrs,
-                    tmName: value.tmName
-                  }}" target="_blank"><img :src="value.defaultImg" /></router-link>
+                    tmName: value.tmName,
+                    id: value.id,
+                  }}"><img :src="value.defaultImg" />
                   <div class="attr">
-                    <a target="_blank" href="item.html">{{value.title}}</a>
+                    <a>{{value.title}}</a>
                   </div>
                   <span class="price">
                     {{value.price}}元
@@ -66,10 +67,12 @@
                   <div class="small-img">
                     <img :src="value.defaultImg" /><img :src="value.defaultImg" /><img :src="value.defaultImg" />
                   </div>
+                  </router-link>
                 </div>
               </li>
             </ul>
           </div>
+          <el-empty :image-size="200" v-if="emptyFlag" description="抱歉，没有搜索到您想要的商品"/>
           <!-- 分页组件 -->
           <Paginator :pageMax="pageMax"></Paginator>
         </div>
@@ -81,13 +84,16 @@
 <script>
   import router from '@/router';
   import {
+    nextTick,
     onMounted,
     onUpdated,
     reactive,
+    ref,
     watch
   } from '@vue/runtime-core';
   import store from '@/store';
   import Paginator from '@/components/Paginator/Paginator.vue';
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
   export default {
     components: {
       Paginator
@@ -99,16 +105,22 @@
       let search = reactive({}) //存放请求来的搜索数据
       let pageMax = reactive({})
       let thisPage = router.currentRoute.value.query.page
+      let emptyFlag = ref(false)  //当前页面的商品列表是否为空
+
+      
       //根据最新的keyword发起请求拿数据
       function getKeyGoods() {
         store.dispatch('getSearchList', query).then(() => {
           // search.data = store.getters.goodsList //使用了search小仓库里的计算属性
           // pageMax.data = store.state.search.pageMax.data //拿到search小仓库里的最大页数
-          if (store.state.search.searchList.data.length != 0) { //如果申请的数据在仓库里存在
+          if (store.getters.goodsList.length != 0) { //如果申请的数据在仓库里存在
             search.data = store.getters.goodsList //使用了search小仓库里的计算属性
-            pageMax.data = store.state.search.pageMax.data //拿到search小仓库里的最大页数
-          } else {
-            search.data = [] //把数组设置为空，该页没有商品
+            pageMax.data = store.getters.pageMax //拿到search小仓库里的最大页数
+            emptyFlag.value = false  //不显示 找不到商品的图标
+          } else {  //拿回来的数组长度为0的情况，没有商品列表
+            search.data = []
+            emptyFlag.value = true  //找不到商品的图标
+            pageMax.data = 0
           }
         })
       }
@@ -129,6 +141,7 @@
         query.keyword = router.currentRoute.value.query.keyword //手动给keyword赋最新的值
         getKeyGoods();
       })
+
 
       //点击价格升序降序，重新给数组排序，重新渲染商品列表
       function priceUp(e) {
@@ -168,7 +181,8 @@
         priceDown,
         query,
         pageMax,
-        thisPage
+        thisPage,
+        emptyFlag,
       }
     }
   }
