@@ -1,19 +1,11 @@
 {
   "code": 200,
   "message": "成功",
-  "data": {
     "goodsList": [{
-        "id": 13,
-        "defaultImg": "http://47.93.148.192:8080/group1/M00/00/02/rBHu8l-sklaALrngAAHGDqdpFtU741.jpg",
-        "title": "华为 HUAWEI P40",
-        "price": 4188,
-        "tmName": "华为",
-        "attrs": "手机"
-      }, {
-        "id": 4,
-        "defaultImg": "https://img.alicdn.com/imgextra/i4/485240141/O1CN017339pf1CucaihpX7u_!!0-saturn_solar.jpg_468x468q75.jpg_.webp",
-        "title": "Redmi 10X",
-        "price": 2999,
+        "id": 6187,
+        "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1647430877.28041893.png",
+        "title": "Redmi K50",
+        "price": 2599,
         "tmName": "红米",
         "attrs": "手机"
       }, {
@@ -33,50 +25,45 @@
       }, {
         "id": 6138,
         "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cea1ff3517387569b7f59fc2b7d01d30.png",
-        "title": "Xiaomi 11 Ultra 8GB+256GB",
+        "title": "Xiaomi 11 Ultra",
         "price": 3999,
         "tmName": "小米",
         "attrs": "手机"
       }, {
         "id": 1270,
         "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b36954e448a48cc3c61fb2d020d20f63.png",
-        "title": "Xiaomi 11 青春版 8GB+256GB",
+        "title": "Xiaomi 11 青春版",
         "price": 2199,
         "tmName": "小米",
         "attrs": "手机"
       }, {
         "id": 6186,
         "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1606289221.80685857.jpg",
-        "title": "Redmi Note 9 4G 4GB+128GB",
+        "title": "Redmi Note 9",
         "price": 899,
         "tmName": "红米",
         "attrs": "手机"
       }, {
         "id": 5558,
         "defaultImg": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1606288801.46329073.jpg",
-        "title": "Redmi Note 9 Pro 5G 8GB+128GB",
+        "title": "Redmi Note 9 Pro",
         "price": 1499,
         "tmName": "红米",
         "attrs": "手机"
       }, {
-        "id": 5559,
-        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/01d9571051a91e540e5c644fa60cc858.jpg",
-        "title": "RedmiBook Pro 14 锐龙版",
-        "price": 4199,
+        "id": 13,
+        "defaultImg": "http://47.93.148.192:8080/group1/M00/00/02/rBHu8l-sklaALrngAAHGDqdpFtU741.jpg",
+        "title": "华为 HUAWEI P40",
+        "price": 4188,
+        "tmName": "华为",
+        "attrs": "手机"
+      }, {
+        "id": 4,
+        "defaultImg": "https://img.alicdn.com/imgextra/i4/485240141/O1CN017339pf1CucaihpX7u_!!0-saturn_solar.jpg_468x468q75.jpg_.webp",
+        "title": "Redmi 10X",
+        "price": 2999,
         "tmName": "红米",
-        "attrs": "笔记本"
-      },
-      {
-        "id": 5560,
-        "defaultImg": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3e05c7567ed8df19728311e64fcd701c.jpg",
-        "title": "小米笔记本 Pro 14 增强版",
-        "price": 4799,
-        "tmName": "小米",
-        "attrs": "笔记本"
+        "attrs": "手机"
       }
     ]
-  },
-  "pageNo": 3,
-  "pageMax":3,
-  "ok": true
 }

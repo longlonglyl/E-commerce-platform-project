@@ -43,6 +43,5 @@ import store from './store'
 
 </script>
 
-<style>
-
+<style lang="less">
 </style>

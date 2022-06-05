@@ -6,7 +6,8 @@
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/search/',query:{keyword:'全部商品',page:1}}"><a>商品列表</a></el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/search/',query:{keyword:goodsInfo.attrs,page:1}}">{{goodsInfo.attrs}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/search/',query:{keyword:goodsInfo.attrs,page:1}}">{{goodsInfo.attrs}}
+        </el-breadcrumb-item>
         <el-breadcrumb-item>{{goodsInfo.tmName}}</el-breadcrumb-item>
       </el-breadcrumb>
       <!-- 主要内容区域 -->
@@ -16,7 +17,7 @@
           <!--放大镜效果-->
           <Zoom />
           <!-- 小图列表 -->
-          <ImageList :goodsDetail="goodsDetail.data"/>
+          <ImageList :goodsDetail="goodsDetail.data" />
         </div>
         <!-- 右侧选择区域布局 -->
         <div class="InfoWrap">
@@ -49,47 +50,84 @@
               </div>
               <div class="supportArea">
                 <div class="title">配 送 至</div>
-                <div class="fixWidth">广东省 深圳市 宝安区</div>
+                <!-- 地址选择器 -->
+                <el-cascader size="large" :options="options" v-model="selectedOptions" @change="handleAdress"
+                  placeholder="请选择要配送的城市">
+                </el-cascader>
               </div>
             </div>
           </div>
 
           <div class="choose">
-            <div class="chooseArea">
+            <div class="chooseArea" v-if="goodsInfo.attrs == '手机'">
               <div class="choosed"></div>
               <dl>
                 <dt class="title">选择颜色</dt>
-                <dd changepirce="0" class="active">金色</dd>
-                <dd changepirce="40">银色</dd>
-                <dd changepirce="90">黑色</dd>
+                <el-radio-group v-model="radio.radio1">
+                  <el-radio-button label="金色" />
+                  <el-radio-button label="银色" />
+                  <el-radio-button label="黑色" />
+                </el-radio-group>
               </dl>
               <dl>
                 <dt class="title">内存容量</dt>
-                <dd changepirce="0" class="active">16G</dd>
-                <dd changepirce="300">64G</dd>
-                <dd changepirce="900">128G</dd>
-                <dd changepirce="1300">256G</dd>
+                <el-radio-group v-model="radio.radio2">
+                  <el-radio-button label="64G" />
+                  <el-radio-button label="128G" />
+                  <el-radio-button label="256G" />
+                </el-radio-group>
               </dl>
               <dl>
                 <dt class="title">选择版本</dt>
-                <dd changepirce="0" class="active">公开版</dd>
-                <dd changepirce="-1000">移动版</dd>
+                <el-radio-group v-model="radio.radio3">
+                  <el-radio-button label="公开版" />
+                  <el-radio-button label="移动版" />
+                  <el-radio-button label="电信版" />
+                </el-radio-group>
               </dl>
               <dl>
                 <dt class="title">购买方式</dt>
-                <dd changepirce="0" class="active">官方标配</dd>
-                <dd changepirce="-240">优惠移动版</dd>
-                <dd changepirce="-390">电信优惠版</dd>
+                <el-radio-group v-model="radio.radio4">
+                  <el-radio-button label="官方标配" />
+                  <el-radio-button label="套餐1" />
+                  <el-radio-button label="套餐2" />
+                </el-radio-group>
+              </dl>
+            </div>
+            <div class="chooseArea" v-if="goodsInfo.attrs == '笔记本'">
+              <div class="choosed"></div>
+              <dl>
+                <dt class="title">选择颜色</dt>
+                <el-radio-group v-model="radio.radio1">
+                  <el-radio-button label="银色" />
+                  <el-radio-button label="黑色" />
+                </el-radio-group>
+              </dl>
+              <dl>
+                <dt class="title">内存容量</dt>
+                <el-radio-group v-model="radio.radio2">
+                  <el-radio-button label="256G固态硬盘" />
+                  <el-radio-button label="512G固态硬盘" />
+                  <el-radio-button label="256G固态硬盘+1T机械硬盘" />
+                </el-radio-group>
+              </dl>
+              <dl>
+                <dt class="title">选择赠品</dt>
+                <el-radio-group v-model="radio.radio3">
+                  <el-radio-button label="套餐1" />
+                  <el-radio-button label="套餐2" />
+                  <el-radio-button label="套餐3" />
+                </el-radio-group>
               </dl>
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt">
-                <a href="javascript:" class="plus">+</a>
-                <a href="javascript:" class="mins">-</a>
+                <input autocomplete="off" class="itxt" v-model="carCount">
+                <a href="javascript:" class="plus" @click="addCount">+</a>
+                <a href="javascript:" class="mins" @click="descCount">-</a>
               </div>
               <div class="add">
-                <a href="javascript:">加入购物车</a>
+                <a href="javascript:" @click="goShopCar">加入购物车</a>
               </div>
             </div>
           </div>
@@ -102,18 +140,16 @@
       <div class="detail">
         <div class="intro">
           <ul class="tab-wraped">
-            <li class="active">
-              <a href="###">
-                商品介绍
-              </a>
+            <li class="introduction">
+              商品介绍
             </li>
           </ul>
           <div class="tab-content">
             <div id="one" class="tab-pane active">
               <div class="intro-detail">
-                <img :src="goodsDetail.data.big_img1" />
-                <img :src="goodsDetail.data.big_img2" />                
-                <img :src="goodsDetail.data.big_img3" />
+                <img v-lazy="goodsDetail.data.big_img1" />
+                <img v-lazy="goodsDetail.data.big_img2" />
+                <img v-lazy="goodsDetail.data.big_img3" />
               </div>
             </div>
           </div>
@@ -127,16 +163,23 @@
   import Zoom from '@/components/Detail/Zoom.vue'
   import ImageList from '@/components/Detail/ImageList.vue'
   import {
-    onMounted, reactive, toRaw, watch
+    regionData,
+    CodeToText
+  } from 'element-china-area-data' //中国地区插件，省/市/区
+  import {
+    reactive,
+    ref,
   } from '@vue/runtime-core'
   import router from '@/router'
-import axios from 'axios'
-  export default { //又在里面import组件了。。。。
+  import axios from 'axios'
+  export default {
     components: {
       ImageList,
       Zoom
     },
     setup() {
+
+      //拿到商品的基本信息（router的query参数拿到的）
       let goodsInfo = {
         name: router.currentRoute.value.params.goodsName,
         price: router.currentRoute.value.query.price,
@@ -144,24 +187,109 @@ import axios from 'axios'
         tmName: router.currentRoute.value.query.tmName,
         id: router.currentRoute.value.query.id
       }
-      let goodsDetail = reactive({
-        data:{}
+      let radio = reactive({}) //用来存放用户选择的商品配置
+      if (goodsInfo.attrs == '手机') {
+        radio.radio1 = '金色'
+        radio.radio2 = '64G'
+        radio.radio3 = '公开版'
+        radio.radio4 = '官方标配'
+      } else if (goodsInfo.attrs == '笔记本') {
+        radio.radio1 = '银色'
+        radio.radio2 = '256G固态硬盘'
+        radio.radio3 = '套餐1'
+      }
+      let goodsDetail = reactive({ //存放数据库拿来的商品详细信息
+        data: {}
       })
-        axios ({
+
+      //处理省市区的相关数据和函数
+      let options = regionData //省市区的下拉表单
+      let selectedOptions = [] //选择器的v-model，存放数字码
+      let adress = reactive({
+        province: null,
+        city: null,
+        district: null
+      })
+
+      function handleAdress(value) {
+        // console.log(value) //这里显示的是数字码，要用CodeToText[]转换
+        adress.province = CodeToText[value[0]]; //省
+        adress.city = CodeToText[value[1]]; //市
+        adress.district = CodeToText[value[2]]; //区
+      }
+
+      //向数据库发起请求拿到 big_img small_img comment 等数据
+      axios({
           method: 'get',
           url: 'http://127.0.0.1/detail',
-          params:{id: goodsInfo.id} //get请求的参数，post的参数是data
-        }).then((res) =>{
+          params: {
+            id: goodsInfo.id
+          } //get请求的参数，post的参数是data
+        })
+        .then((res) => {
           // console.log(res.data); //看一下发送回来的数据
-          if(res.data.date.info[0]) {
+          if (res.data.date.info[0]) {
             goodsDetail.data = res.data.date.info[0] //把数据转存到本地
           } else {
             console.log('没有从数据库拿到商品数据');
           }
+
+
         })
+
+      //购物车数量的数据操作
+      let carCount = ref(1)
+
+      function addCount() {
+        carCount.value++
+      }
+
+      function descCount() {
+        if (carCount.value >= 2) {
+          carCount.value--
+        }
+      }
+
+      //加入购物车，往数据库发送数据（在对应用户的购物车table里面增加一条），然后跳转到购物车路由
+      function goShopCar() {
+        if (sessionStorage.getItem('token') && sessionStorage.getItem('user')) {
+          let query = {
+              goodsid: goodsInfo.id,
+              username: sessionStorage.getItem('user'),
+              price: goodsInfo.price,
+              img: router.currentRoute.value.query.img,
+              title: goodsInfo.name,
+              count: carCount.value,
+              config: Object.values(radio)  //把手机/电脑配置转换成数组发过去
+            }
+          axios({
+            method: 'post',
+            url: 'http://127.0.0.1/addcar',
+            params: query,
+          }).then((res) => {
+            console.log(res);
+            if(res.data.status == 200) {
+              router.push('/carSuccess')
+            } else if(res.data.status == 201) {
+              alert("加入购物车失败，请稍后再试")
+            }
+          })
+        } else {
+          router.push('/login')
+        }
+
+      }
       return {
+        radio,
         goodsInfo,
-        goodsDetail
+        goodsDetail,
+        options,
+        selectedOptions,
+        handleAdress,
+        carCount,
+        addCount,
+        descCount,
+        goShopCar
       }
     }
   }
@@ -199,13 +327,14 @@ import axios from 'axios'
           float: right;
 
           .InfoName {
-            font-size: 14px;
+            font-size: 18px;
             line-height: 21px;
             margin-top: 15px;
           }
 
           .news {
             color: #e12228;
+            font-size: 13px;
             margin-top: 15px;
           }
 
@@ -301,7 +430,7 @@ import axios from 'axios'
           .choose {
             .chooseArea {
               overflow: hidden;
-              line-height: 28px;
+              font-size: 15px;
               margin-top: 10px;
 
               dl {
@@ -310,24 +439,8 @@ import axios from 'axios'
 
                 dt {
                   margin-right: 15px;
+                  line-height: 31.6px;
                   float: left;
-                }
-
-                dd {
-                  float: left;
-                  margin-right: 5px;
-                  color: #666;
-                  line-height: 24px;
-                  padding: 2px 14px;
-                  border-top: 1px solid #eee;
-                  border-right: 1px solid #bbb;
-                  border-bottom: 1px solid #bbb;
-                  border-left: 1px solid #eee;
-
-                  &.active {
-                    color: green;
-                    border: 1px solid green;
-                  }
                 }
               }
             }
@@ -486,7 +599,7 @@ import axios from 'axios'
 
       .detail {
         width: 980px;
-        float: right;
+        float: left;
 
         .fitting {
           border: 1px solid #ddd;
@@ -602,36 +715,20 @@ import axios from 'axios'
 
         .intro {
           .tab-wraped {
-            background: #ededed;
-            // border: 1px solid #ddd;
+            background: #ccc;
+            float: left;
+            width: 1100px;
+            height: 58px;
+            border: 1px solid #ddd;
             overflow: hidden;
+            padding: 5px;
+            margin-top: 20px;
 
             li {
+              font-size: 22px;
+              line-height: 58px;
+              color: #333;
               float: left;
-
-              &+li>a {
-                border-left: 1px solid #ddd;
-              }
-
-              &.active {
-                a {
-                  // border: 0;
-                  background: #e1251b;
-                  color: #fff;
-                }
-              }
-
-              a {
-                display: block;
-                height: 40px;
-                line-height: 40px;
-                padding: 0 11px;
-                text-align: center;
-                color: #666;
-                background: #fcfcfc;
-                border-top: 1px solid #ddd;
-                border-bottom: 1px solid #ddd;
-              }
             }
           }
 
@@ -654,6 +751,7 @@ import axios from 'axios'
 
                 .intro-detail {
                   img {
+                    margin-left: 115px;
                     width: 100%;
                   }
                 }

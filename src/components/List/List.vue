@@ -2,7 +2,7 @@
   <!-- 商品分类导航 -->
   <div class="type-nav">
     <div class="container">
-      <h2 class="all" @mouseenter="showNav" @mouseleave="hideNav">全部商品分类</h2>
+      <h2 class="all" @mouseenter="showNav" @mouseleave="hideNav">全部商品</h2>
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -124,8 +124,6 @@
 
 <style lang="less" scoped>
   .type-nav {
-
-    border-bottom: 2px solid #e1251b;
 
     a:hover {
       text-decoration: none;

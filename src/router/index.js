@@ -7,6 +7,8 @@ import Login from '@/views/Login/Login.vue'
 import Register from '@/views/Register/Register.vue'
 import Search from '@/views/Search/Search.vue'
 import Detail from '@/views/Detail/Detail.vue'
+import ShopCar from '@/views/shopCar/ShopCar.vue'
+import CarSuccess from '@/components/shopCar/CarSuccess.vue'
 import nprogress from 'nprogress'  //进度条
 import 'nprogress/nprogress.css'  //进度条样式
 
@@ -19,10 +21,11 @@ const routes = [{
     component: Home,
     meta: {
       showFooter: true
-    }
+    },
   },
   {
     path: '/login',
+    name: 'login',
     component: Login,
     meta: {
       showFooter: false
@@ -30,6 +33,7 @@ const routes = [{
   },
   {
     path: '/register',
+    name: 'register',
     component: Register,
     meta: {
       showFooter: false
@@ -50,6 +54,30 @@ const routes = [{
     meta: {
       showFooter: true
     }
+  },
+  {
+    path: '/shopcar',
+    name: 'shopcar',
+    component: ShopCar,
+    meta: {
+      showFooter:true
+    },
+    beforeEnter: (to, from, next) => {  //在进入购物车页面之前，要先判断是否登录（是否已经有token）
+      let token = sessionStorage.getItem('token')
+      if(token) {
+        next();
+      } else {
+        router.push('/login')
+      }
+    }
+  },
+  {
+    path: '/carSuccess',
+    name: 'carSuccess',
+    component: CarSuccess,
+    meta: {
+      showFooter:true
+    },
   }
 ]
 

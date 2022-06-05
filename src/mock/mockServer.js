@@ -5,6 +5,7 @@ import listData from './listData.json'
 import searchData from './searchData1.json'
 import searchData2 from './searchData2.json'
 import searchData3 from './searchData3.json'
+import Home_Phone from './Home_Phone.json'
 
 // 当ajax请求的url是/mock/carousel，方式是get时，就会把后面的数据作为ajax响应回去
 // 用来模拟ajax请求返回的数据，实际上这些数据都在本地
@@ -110,5 +111,11 @@ Mock.mock('/mock/search', 'post' || "POST", function (options) {
       return match(obj.keyword)
     }
   }
+})
+
+
+Mock.mock('/mock/phone','get', {
+  code:200,
+  data: Home_Phone
 })
 

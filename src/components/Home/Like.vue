@@ -11,42 +11,42 @@
           <li>
             <img src="@/assets/home/like_02.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>Xiaomi 11 Ultra 8GB+256GB</p>
               <h3>¥116.00</h3>
             </div>
           </li>
           <li>
             <img src="@/assets/home/like_03.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>小米笔记本 Pro 14 增强版</p>
               <h3>¥116.00</h3>
             </div>
           </li>
           <li>
             <img src="@/assets/home/like_01.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>xiaomi10 至尊纪念版</p>
               <h3>¥116.00</h3>
             </div>
           </li>
           <li>
             <img src="@/assets/home/like_02.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>Redmi 10X</p>
               <h3>¥116.00</h3>
             </div>
           </li>
           <li>
             <img src="@/assets/home/like_03.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>Xiaomi 11 青春版 8GB+256GB</p>
               <h3>¥116.00</h3>
             </div>
           </li>
           <li>
             <img src="@/assets/home/like_01.png" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
+              <p>Redmi Note 9 Pro 5G 8GB+128GB</p>
               <h3>¥116.00</h3>
             </div>
           </li>
@@ -138,7 +138,7 @@
                 color: #df3033;
                 font-size: 20px;
                 line-height: 30px;
-                margin: 9px 0;
+                margin-bottom: 9px;
                 font-weight: 700;
               }
             }

@@ -9,26 +9,65 @@
             <h3>今日推荐</h3>
           </div>
         </li>
-        <li class="banner">
-          <img src="@/assets/home/today01.png" />
-        </li>
-        <li class="banner">
-          <img src="@/assets/home/today02.png" />
-        </li>
-        <li class="banner">
-          <img src="@/assets/home/today03.png" />
-        </li>
-        <li class="banner">
-          <img src="@/assets/home/today04.png" />
-        </li>
+        <div class="recommend_goods">
+          <li class="banner" v-for="(value,index) in imgList" :key="value">
+            <img :src="value.img" @click="goDetail(index)" />
+          </li>
+        </div>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+  import store from '@/store'
+  import {
+    reactive,
+    ref
+  } from '@vue/reactivity';
+  import router from '@/router';
   export default {
+    setup() {
+      let goodsList = reactive({})
+      let imgList = reactive([{
+          img: require("@/assets/home/phone1.jpg")
+        }, //静态资源用require，直接写地址到时候拿不到
+        {
+          img: require("@/assets/home/phone2.jpg")
+        },
+        {
+          img: require("@/assets/home/phone3.jpg")
+        },
+      ])
 
+      // console.log(imgList);
+      store.dispatch('getSearchList', {
+        keyword: '手机',
+        page: '1'
+      }).then(() => {
+        goodsList.data = store.getters.goodsList
+        // console.log(goodsList);
+      })
+
+      function goDetail(index) {
+        router.push({
+          name: 'detail',
+          params: goodsList.data[index].title,
+          query: {
+            page: '1',
+            img: goodsList.data[index].defaultImg,
+            price: goodsList.data[index].price,
+            attrs: goodsList.data[index].attrs,
+            tmName: goodsList.data[index].tmName,
+            id: goodsList.data[index].id,
+          }
+        })
+      }
+      return {
+        imgList,
+        goDetail
+      }
+    }
   }
 
 </script>
@@ -37,16 +76,17 @@
   .today-recommend {
     .py-container {
       width: 1200px;
-      margin: 0 auto;
+      margin: 10px auto;
 
       .recommend {
         height: 165px;
-        background-color: #eaeaea;
+        // background-color: #eaeaea;
         margin: 10px 0;
         display: flex;
 
         .clock {
-          width: 16.67%;
+          width: 210px;
+          height: 165px;
           background-color: #5c5251;
           color: #fff;
           font-size: 18px;
@@ -64,12 +104,20 @@
           }
         }
 
-        .banner {
-          width: 20.83%;
+        .recommend_goods {
+          width: 975px;
+          display: flex;
+          background-color: #fff;
+          justify-content: space-between;
 
           img {
-            width: 100%;
-            height: 100%;
+            width: 304px;
+          }
+        }
+
+        .banner {
+
+          img {
             transition: all 400ms;
 
             &:hover {

@@ -1,9 +1,9 @@
 <template>
   <div class="spec-preview">
-    <img :src="img" />
-    <div class="event"></div>
+    <img :src="img.data"/>
+    <div class="event" @mousemove="moveBig($event)"></div>
     <div class="big">
-      <img :src="img" />
+      <img :src="img.data" id="bigImg"/>
     </div>
     <div class="mask"></div>
   </div>
@@ -11,12 +11,45 @@
 
 <script>
 import router from '@/router';
+import { getCurrentInstance, reactive } from 'vue'
   export default {
     name: "Zoom",
     setup() {
-      let img = router.currentRoute.value.query.img
+      let { proxy } = getCurrentInstance()
+
+      let originImg = reactive({data: router.currentRoute.value.query.img})
+      let img = reactive({data: router.currentRoute.value.query.img})
+      
+      proxy.$mitt.on('sendImg',(res) => {  //接收到轮播图组件传过来的小图片，用来替代大图片
+        img.data = res
+      })
+
+      //换回原来的图片
+      proxy.$mitt.on('showOriginImg',(res) => {  //鼠标离开小图以后，触发事件通知换成原图
+      showOriginImg()
+      })
+
+      function showOriginImg() {
+        img.data = originImg.data
+      }
+
+      function moveBig(e) {
+        let mask = document.querySelector('.mask')
+        let bigImg = document.querySelector('#bigImg')
+        if (e.pageY -290 >= 0 && e.pageY -290 <=200) {
+          mask.style.top = e.pageY -290 + 'px'
+          bigImg.style.top = -(e.pageY -290) * 2 + 'px'
+        }
+        if (e.pageX -260 >= 0 && e.pageX -260 <=200) {
+          mask.style.left = e.pageX -260 + 'px'
+          bigImg.style.left = -(e.pageX -260) * 2 + 'px'
+        }
+      }
+
       return {
-        img
+        img,
+        showOriginImg,
+        moveBig
       }
     }
   }

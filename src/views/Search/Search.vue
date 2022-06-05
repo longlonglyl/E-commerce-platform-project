@@ -65,7 +65,9 @@
                     {{value.price}}元
                   </span>
                   <div class="small-img">
-                    <img :src="value.defaultImg" /><img :src="value.defaultImg" /><img :src="value.defaultImg" />
+                    <img :src="value.defaultImg" />
+                    <img :src="value.defaultImg" />
+                    <img :src="value.defaultImg" />
                   </div>
                   </router-link>
                 </div>
@@ -190,6 +192,9 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 </script>
 
 <style lang="less" scoped>
+  a:hover {
+    text-decoration: none;
+  }
   .main {
     margin: 10px 0;
 
