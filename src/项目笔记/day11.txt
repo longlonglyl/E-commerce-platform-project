@@ -1,0 +1,16 @@
+1.对计算属性新的理解：计算属性返回的值是一个Impref格式的数据，所以，如果要让一个ref变量等于computed计算出来的值。
+	千万不能写成 a.value = computed(()=>{})
+	而是a = computed(()=>{})
+
+2.使用axios时，get和post都能用参数params，params参数会以拼接字符串的形式加到url地址后面
+
+3.axios的post方法传递的参数data，需要的是一个json格式的数据，如果是一个对象，可以用JSON.stringify转化成json格式的字符串，就能用data传了
+	在node.js（express）中，要拿到post参数，有三种情况 
+1 普通键值对（req.body）
+2 json格式（
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+）
+3 表单文件（使用multer包）
+	具体参考https://blog.csdn.net/weixin_52023681/article/details/120330568

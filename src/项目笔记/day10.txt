@@ -1,0 +1,10 @@
+1.使用node的步骤：
+	1导入express（要先npm i express）
+	2导入mysql（要先npm i）
+	3创建app实例(const app = express())
+	4连接数据库
+	5启动服务器（app.listen）
+	6配置对应请求处理函数(app.get/post())
+	注意：在用db.query对数据库发请求拿数据的时候，res.send要写在db.query函数体里面，不然res.send会比db.query执行得更早（数据还没从数据库拿到，就发回前端了）
+
+2.vue3中兄弟组件传值，使用mitt
