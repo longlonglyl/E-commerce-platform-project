@@ -1,7 +1,0 @@
-1.switch合并case的时候，不能写成case 1 || 2 || 3 :{}    而要写成case1:case2:case3:{}
-
-2.根据数组里所有对象的一个属性值来重新排列数组（按照价格升序）写成Arr.sort( (a,b) => return a.price - b.price)),返回一个新的数组，如果要降序就在后面加.reverse
-
-3.mockjs里的option.body表示请求时的参数，会默认转换为字符串，要重新转换成对象用JSON.parse(string),而对象转换为字符串是JSON.stringfy(obj)
-
-4.一个对象赋值给另一个对象，这两个对象引用的是同一个数据，一变俱变。要用深拷贝赋值，才能独立得到两个数据相同的对象

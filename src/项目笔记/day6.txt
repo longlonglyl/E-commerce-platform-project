@@ -1,9 +1,0 @@
-1.nextTick()使用场景：在当前函数内，如果改变了数据，然后要操作改变之后的DOM，往往拿不到最新的DOM结构，这个时候就需要用到nextTick()。
-	nextTick会等页面重新渲染改变之后的DOM，再执行里面的回调函数，有两种使用方法：
-	1await nexiTick(),下面写DOM更新后的操作
-	2nextTick(callback)，回调函数里面写更新后的操作
-
-2.axios请求收到的返回值是一个Promise对象，这个Promise对象可以被.then()和.catch()处理，处理完毕以后就可以得到正常的对象。
-如果这个Promise对象已经被.then()处理，就不能用await获取返回的值（await拿到的值实际上就是.then里的res）
-
-3.vuex里的小仓库方法命名不能冲突，不然会调用到其他小仓库的同名方法
