@@ -1,0 +1,13 @@
+1.给v-for循环生成的元素动态添加class类名：比如分页器当前页显示背景颜色为红。:class="{active: isActive == index}"当active后面的表达式为true时，绑定active类名，isActive自己去定义
+
+2.要设置路由跳转自动定位到最顶端，在路由导航守卫的router.afterEach((to,from) =>{ })里设置window.scroll(0,0)
+
+3.在router =>index.js里面path配置的‘:参数？’这个参数是params参数，不是query参数
+
+4.vuex里的state数据如果要响应式，必须要用getters计算属性引用，而不是跟我在项目里一样给state属性加一个reative({})
+
+5.路由跳转时，watch的代码比onupdated先执行
+	vue3的生命周期：
+setup=>watch=>onbeforeMount=>onMounted=>watch=>onBeforeUpdate=>onUpdated
+
+6.路由跳转到自己的时候（跳转到本views，但是传参变了），不会触发路由的生命周期函数，但是会触发onupdated（params或query变了）

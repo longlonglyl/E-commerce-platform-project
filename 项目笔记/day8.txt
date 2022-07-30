@@ -1,0 +1,11 @@
+1.下载不了elementui，说是依赖树出错
+
+2.bootstrap引入的css样式，在组件里使用，也会污染其他组件的样式，不知道怎么解决
+
+3.vuex里的mutations和actions不支持传递多个参数
+
+4.如果要在setup里面使用props参数，要在setup里面传形参setup(props){}才能用
+
+5.v-for控制循环次数：两种方法：
+	1：v-for="(item,index) in arr.slice(0, 2)"
+	2：v-for="(item,index) in domainList" v-if="index<3"

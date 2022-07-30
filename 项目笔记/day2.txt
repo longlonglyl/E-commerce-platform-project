@@ -1,0 +1,16 @@
+总结：进一步配置了路由，分离了home界面的各静态组件
+
+
+1.Vue3获取当前路由信息的方法：router.currentRoute得到一个RefImpl数据，要先import { router }
+
+2.要根据不同的路由展示不同的组件，有两种方法： 
+	1获取当前的路由地址，用v-if判断哪些展示（不推荐，如果路由太多了就很麻烦） 
+	2在index.js配置路由的时候配置meta{}，里面写自己定义的一些属性，比如meta{ isShow: false}，在v-if时直接从router.currentRouter.value.meta里面拿这些属性
+
+3.路由传递参数：
+	1params形式：要在配置路由后面进行占位 path:/search/:keywords(这样url地址中search/后面接任意字符串都会显示search路由),然后在跳转的时候router.push('/search/' + keywords)把参数传递过去
+	2对象形式（常用），router.push({name:searchName, params:{key : value}})这里的searchName要先在index.js里面定义 
+
+4.组件里面拿到路由传过来的参数
+	1在index.js对应路由设置prors:true ，然后在对应的组件里面声明props要拿到的参数，就可以直接用了
+	2可以在组件里调router.currentRoute.value.params拿到传过来的参数对象

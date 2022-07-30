@@ -1,0 +1,7 @@
+vue3+vue全家桶
+axios
+node.js
+mysql
+mock.js
+element-ui
+swiper

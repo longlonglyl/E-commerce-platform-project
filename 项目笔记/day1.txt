@@ -1,0 +1,25 @@
+总结：主要实现了cli脚手架的搭建、home、head、footer静态组件的创建、router跳转的基本配置
+
+
+1.public文件夹，用来存放一些静态资源，比如图片等，打包时，会把这些资源原封不动地放到dist里面
+
+2.assets也是放静态资源的文件夹，不过里面的资源在打包的时候后会被当成一个模块，打包进JS文件里面
+
+3.package.json文件，记录项目的各种信息
+
+4.项目run serve的时候自动打开浏览器，在package.json里面的scripts=>serve 在属性值的后面加上 --open
+
+5.关闭eslint：在vue.config.js里面配置lintOnSave: false
+
+6.配置src根目录的别名@：在jsconfig.json里面（cli自动配置了）
+
+7.开发项目的步骤：
+书写静态页面 => 拆分组件 => 获取服务器的数据动态展示 => 完成相应的动态业务逻辑
+
+8.清除样式的css配置在index.html里面引入
+
+9.components一般放置的是非路由组件（全局组件），路由组件放在views里面
+
+10.在vue3中实现路由跳转： 
+	1 import {router} from '@/router'
+	2 router.push({ path: '/xxx' })

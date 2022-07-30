@@ -1,0 +1,7 @@
+1.使用element-plus的icon图标
+	可以选择全局引入和按需引入（需要哪个图标就引入哪个）
+	按需引入的步骤：
+	1导包 npm install @element-plus/icons-vue
+	2在组件内按需引入（注意，icon在引入的时候是被当成组件的） import {icon名} from '@element-plus/icons-vue'
+	3注册组件 components：{组件名}
+	4直接在模板中使用这个组件（icon）
