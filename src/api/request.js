@@ -1,14 +1,12 @@
 // 封装自己的axios
 
 // 1.导入axios
-import store from '@/store'
 import axios from 'axios'
 import nprogress from 'nprogress'  //进度条效果 第三方插件
 import 'nprogress/nprogress.css'  //引入进度条的样式
 
 // 2.创建axios实例
 const requests = axios.create({
-  baseURL: 'http://39.98.123.211',   //自动添加在最前面的url字段，每次调用requests就不用写完整地址
   timeout: 2000,  //最长请求时间
 })
 

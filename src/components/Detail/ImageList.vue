@@ -43,10 +43,10 @@
           // slidesPerView: 6, //一页轮播图最多显示几个图片（前提是轮播图容器能放得下）
           slidesPerGroup: 1, //每一次切换图片的个数
           // 如果需要前进后退按钮
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
+          // navigation: {
+          //   nextEl: '.swiper-button-next',
+          //   prevEl: '.swiper-button-prev',
+          // },
         })
       })
 

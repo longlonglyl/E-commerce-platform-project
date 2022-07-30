@@ -3,9 +3,9 @@ import {
   createWebHashHistory
 } from 'vue-router'
 import Home from '@/views/Home/Home.vue'
-import Login from '@/views/Login/Login.vue'
-import Register from '@/views/Register/Register.vue'
-import Search from '@/views/Search/Search.vue'
+// import Login from '@/views/Login/Login.vue'
+// import Register from '@/views/Register/Register.vue'
+// import Search from '@/views/Search/Search.vue'
 import Detail from '@/views/Detail/Detail.vue'
 import ShopCar from '@/views/shopCar/ShopCar.vue'
 import CarSuccess from '@/components/shopCar/CarSuccess.vue'
@@ -26,7 +26,7 @@ const routes = [{
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: ()=>import('@/views/Login/Login.vue'),
     meta: {
       showFooter: false
     }
@@ -34,14 +34,14 @@ const routes = [{
   {
     path: '/register',
     name: 'register',
-    component: Register,
+    component: ()=>import('@/views/Register/Register.vue'),
     meta: {
       showFooter: false
     }
   },
   {
     path: '/search/:keyword?:page?', //必须传递名为keyword和page的params参数,后面加'?'是表示可传可不传
-    component: Search,
+    component: ()=>import('@/views/Search/Search.vue'),
     name:'search',  //配置一个name，可以路由传参
     meta: {
       showFooter: true

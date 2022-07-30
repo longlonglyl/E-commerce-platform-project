@@ -64,7 +64,7 @@
         //虽然数据更新了，但是v-for可能还来不及执行，
         // nextTick可以在dom更新之后再执行里面的回调函数，这样能保证swiper实例创建时存在对应的dom元素
         nextTick(() => {
-          let mySwiper = new Swiper('.swiper-container', {
+          new Swiper('.swiper-container', {
             loop: true, // 循环模式
             autoplay: { //开启自动轮转
               delay: 2500,

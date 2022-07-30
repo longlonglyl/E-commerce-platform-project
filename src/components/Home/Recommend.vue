@@ -52,7 +52,9 @@
       function goDetail(index) {
         router.push({
           name: 'detail',
-          params: goodsList.data[index].title,
+          params: {
+            goodsName: goodsList.data[index].title
+          },
           query: {
             page: '1',
             img: goodsList.data[index].defaultImg,

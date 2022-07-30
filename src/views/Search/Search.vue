@@ -76,7 +76,7 @@
           </div>
           <el-empty :image-size="200" v-if="emptyFlag" description="抱歉，没有搜索到您想要的商品"/>
           <!-- 分页组件 -->
-          <Paginator :pageMax="pageMax"></Paginator>
+          <Paginator :pageMax="pageMax" v-if="!emptyFlag"></Paginator>
         </div>
       </div>
     </div>

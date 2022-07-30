@@ -4,7 +4,7 @@
       <!-- 上层，tab -->
       <div class="tab">
         <span>手机</span>
-        <a href="">查看更多</a>
+        <a @click="goList">查看更多</a>
       </div>
       <!-- 下层，手机列表 -->
       <div class="container">
@@ -46,7 +46,9 @@
       function pushLeft() {
         router.push({
           name: 'detail',
-          params: LeftGood.data.title,
+          params: {
+            goodsName: LeftGood.data.title
+          },
           query: {
             img: LeftGood.data.defaultImg,
             price: LeftGood.data.price,
@@ -61,7 +63,9 @@
       function rightPush(index) {
           router.push({
           name: 'detail',
-          params: goodsList.data[index].title,
+          params: {
+            goodsName: goodsList.data[index].title
+          },
           query: {
             img: goodsList.data[index].defaultImg,
             price: goodsList.data[index].price,
@@ -72,11 +76,22 @@
         })
       }
 
+      function goList(){
+            router.replace({
+            name: 'search',
+            query: {
+              keyword: "手机",
+              page: '1'
+            },
+          })
+      }
+
       return {
         goodsList,
         LeftGood,
         pushLeft,
-        rightPush
+        rightPush,
+        goList
       }
 
     },
@@ -113,6 +128,7 @@
           line-height: 58px;
           color: #424242;
           text-decoration: none;
+          cursor: pointer;
 
           &:hover {
             transition: all .4s;

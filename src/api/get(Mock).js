@@ -1,8 +1,8 @@
 // 拿到本地轮播图的api
 
 import axios from 'axios'
-import nprogress from 'nprogress'  //进度条效果 第三方插件
-import 'nprogress/nprogress.css'  //引入进度条的样式
+import nprogress from 'nprogress' //  进度条效果 第三方插件
+import 'nprogress/nprogress.css' //  引入进度条的样式
 
 const getMock = axios.create({
   baseURL: '/mock',   //自动添加在最前面的url字段，每次调用requests就不用写完整地址
